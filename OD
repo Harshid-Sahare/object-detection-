@@ -1,0 +1,24 @@
+pip install keras==2.4.3 \n",
+    "pip install numpy==1.19.3 \n",
+    "pip install pillow==7.0.0 \n",
+    "pip install scipy==1.4.1 \n",
+    "pip install h5py==2.10.0 \n",
+    "pip install matplotlib==3.3.2\n",
+    "pip install opencv-python \n",
+    "pip install keras-resnet==0.2.0\n"
+    
+    from imageai.Classification import ImageClassification
+import os
+
+execution_path = os.getcwd()
+
+prediction = ImageClassification()
+prediction.setModelTypeAsResNet50()
+prediction.setModelPath(os.path.join(execution_path, "resnet50_imagenet_tf.2.8.0.h5"))
+prediction.loadModel()
+
+predictions, probabilities = prediction.classifyImage(os.path.join(execution_path, "1.jpg"), result_count=5 )
+for eachPrediction, eachProbability in zip(predictions, probabilities):
+    print(eachPrediction , " : " , eachProbability)
+    
+    
